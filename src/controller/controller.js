@@ -1,7 +1,7 @@
-const JobPost = require('./models/JobPost'); // Import your JobPost model
-const BlogPost = require('./models/BlogPost');
-const ContactUs = require('./models/ContactUs');
-const Login = require('./models/Login');
+const JobPost = require('../models/JobPost'); 
+const BlogPost = require('../models/BlogPost');
+const ContactUs = require('../models/ContactUs');
+const Login = require('../models/Login');
 
 
 exports.postjob =async (req, res) => {
