@@ -6,12 +6,13 @@ const mongoose = require('mongoose');
 const multer = require("multer");
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
+require('dotenv').config();
 
 app.use(express.json());
 
-
+// `Node Server Running In ${process.env.DEV_MODE} Mode on port no ${PORT}`
 //db connection
-const uri = "mongodb+srv://visheshkumar41:BwnxVrz3tkBnI90T@cluster0.fozhk6m.mongodb.net/SquashGlobal";
+const uri = `${process.env.mongodb_url}`;
 mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true })
     .then(() => console.log('MongoDB Successfully Connected'))
     .catch(err => console.log(err));
