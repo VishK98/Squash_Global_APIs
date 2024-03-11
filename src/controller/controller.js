@@ -116,7 +116,7 @@ exports.contactUs = async (req, res) => {
     await newContactUs.save();
     return res.status(201).send({
       success: true,
-      message: "We will try to contact you soon ....",
+      message: "Thank you for your message. We'll get back to you soon!",
       data: newContactUs
     });
   } catch (error) {
