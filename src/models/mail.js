@@ -13,6 +13,8 @@ const transporter = nodemailer.createTransport({
 
 // Function to send email
 const sendEmail = (name, email, contact, service, message) => {
+    // console.log(`Email ==> ${process.env.EMAIL_USER}`);
+    // console.log(`Password ==> ${process.env.EMAIL_PASS}`);
     const mailOptions = {
         from: email,
         to: 'vishesh@purplewaveindia.com',
