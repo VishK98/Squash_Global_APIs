@@ -5,7 +5,7 @@ const multer = require('multer');
 const storage = multer.memoryStorage();
 const upload = multer({ storage: storage });
 
-const { postjob, allJobPosts, jobPost, blogPost, contactUs, login,allContactUs} = require("../controller/controller")
+const { postjob, allJobPosts, jobPost, blogPost, contactUs, login,allContactUs,sendEmail} = require("../controller/controller")
 
 
 router.post("/jobPost", postjob);
@@ -15,5 +15,6 @@ router.post("/blogPost", upload.single("blogImage"), blogPost);
 router.post("/contactUs", contactUs);
 router.post("/login", login);
 router.get("/allContactUs", allContactUs);
+router.post("/sendEmail", sendEmail);
 
 module.exports = router;

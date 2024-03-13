@@ -2,6 +2,8 @@ const JobPost = require('../models/JobPost');
 const BlogPost = require('../models/BlogPost');
 const ContactUs = require('../models/ContactUs');
 const Login = require('../models/Login');
+const { sendEmail } = require('../models/mail');
+
 
 
 exports.postjob = async (req, res) => {
@@ -135,8 +137,8 @@ exports.login = async (req, res) => {
     if (!admin) {
       return res.status(200).send({
         status: "false",
-         message: "Invalid credentials"
-        });
+        message: "Invalid credentials"
+      });
     }
     return res.status(200).send({
       status: true,
@@ -163,3 +165,12 @@ exports.allContactUs = async (req, res) => {
   }
 };
 
+exports.sendEmail = (req, res) => {
+  const { name, email, contact, service, message } = req.body;
+  sendEmail(name, email, contact, service, message);
+  res.status(200).json({
+    status: "true",
+    message: 'Email sent successfully.',
+    formData: { name, email, contact, service, message }
+  });
+};
