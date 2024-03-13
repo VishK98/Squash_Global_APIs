@@ -125,10 +125,6 @@ exports.contactUs = async (req, res) => {
   }
 };
 
-
-
-
-
 exports.login = async (req, res) => {
   const { username, password } = req.body;
 
@@ -137,10 +133,13 @@ exports.login = async (req, res) => {
     const admin = await Login.findOne({ username, password });
 
     if (!admin) {
-      return res.status(401).send({ message: "Invalid credentials" });
+      return res.status(200).send({
+        status: "false",
+         message: "Invalid credentials"
+        });
     }
     return res.status(200).send({
-      sucess: true,
+      status: true,
       message: "Login successful",
     });
   } catch (error) {
