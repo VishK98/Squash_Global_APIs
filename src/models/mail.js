@@ -16,8 +16,8 @@ const sendEmail = (name, email, contact, service, message) => {
     // console.log(`Password ==> ${process.env.EMAIL_PASS}`);
     const mailOptions = {
         from: email,
-        to: 'vishesh@purplewaveindia.com',
-        subject: 'Hello! I came from your website',
+        to: 'connect@theagencyway.co.in',
+        subject: 'You have got a new enquiry',
         text: `Name: ${name}\nEmail: ${email}\nContact: ${contact}\nService: ${service}\nMessage: ${message}`
     };
 
