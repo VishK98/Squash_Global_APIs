@@ -1,7 +1,6 @@
 const nodemailer = require('nodemailer');
 require('dotenv').config();
 
-
 // Create a transporter
 const transporter = nodemailer.createTransport({
     service: 'gmail',
@@ -31,6 +30,4 @@ const sendEmail = (name, email, contact, service, message) => {
     });
 };
 
-
-// Export the sendEmail function
 module.exports = { sendEmail };
