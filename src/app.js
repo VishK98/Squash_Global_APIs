@@ -3,9 +3,6 @@ const app = express();
 const cors = require('cors');
 app.use(cors());
 const mongoose = require('mongoose');
-const multer = require("multer");
-const bcrypt = require('bcryptjs');
-const jwt = require('jsonwebtoken');
 require('dotenv').config();
 
 app.use(express.json());

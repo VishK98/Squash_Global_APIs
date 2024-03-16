@@ -2,7 +2,10 @@ const JobPost = require('../models/JobPost');
 const BlogPost = require('../models/BlogPost');
 const ContactUs = require('../models/ContactUs');
 const Login = require('../models/Login');
+const HireEmployee = require('../models/HireEmployee');
 const { sendEmail } = require('../models/mail');
+const multer = require('multer');
+const fs = require('fs');
 
 
 
@@ -173,4 +176,92 @@ exports.sendEmail = (req, res) => {
     message: 'Email sent successfully.',
     formData: { name, email, contact, service, message }
   });
+};
+
+
+// hire employee APIs
+
+const storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    const uploadDir = 'uploads/';
+    if (!fs.existsSync(uploadDir)) {
+      fs.mkdirSync(uploadDir);
+    }
+    cb(null, uploadDir);
+  },
+  filename: function (req, file, cb) {
+    cb(null, Date.now() + '-' + file.originalname)
+  }
+});
+
+const upload = multer({ storage: storage }).single('cv'); // 'cv' should match the name attribute in your form
+
+exports.hireEmployee = async (req, res) => {
+  try {
+    upload(req, res, async function (err) {
+      if (err instanceof multer.MulterError) {
+        // A Multer error occurred when uploading
+        console.error('Multer error:', err);
+        return res.status(500).json({ error: 'File upload error' });
+      } else if (err) {
+        // An unknown error occurred when uploading
+        console.error('Unknown error:', err);
+        return res.status(500).json({ error: 'Unknown error' });
+      }
+
+      // File uploaded successfully
+      try {
+        const { name, email, contact, role, message } = req.body;
+        const cv = req.file.path; // Assuming you store the file path in the database
+
+        // Create a new ContactUs document
+        const newHireEmployee = new HireEmployee({
+          name,
+          email,
+          contact,
+          role,
+          message,
+          cv
+        });
+
+        await newHireEmployee.save();
+
+        res.status(200).json({
+          status: true,
+          message: 'Enquiry submitted successfully',
+          data: [newHireEmployee]
+        });
+      } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: 'Internal Server Error' });
+      }
+    });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+};
+
+exports.sharedJobProfile = async (req, res) => {
+  console.log(res);
+
+  try {
+    const jobProfile = await HireEmployee.find();
+
+    if (jobProfile.length === 0) {
+      console.log(`jobProfile ==> ${jobProfile}`);
+      return res.status(404).json({
+        status: false,
+        message: 'No job profile found'
+      });
+    }
+
+    res.status(200).json({
+      status: true,
+      data: jobProfile
+    });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
 };
