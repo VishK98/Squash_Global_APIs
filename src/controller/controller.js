@@ -243,14 +243,11 @@ exports.hireEmployee = async (req, res) => {
 };
 
 exports.sharedJobProfile = async (req, res) => {
-  console.log(res);
-
   try {
     const jobProfile = await HireEmployee.find();
 
     if (jobProfile.length === 0) {
-      console.log(`jobProfile ==> ${jobProfile}`);
-      return res.status(404).json({
+      return res.status(200).json({
         status: false,
         message: 'No job profile found'
       });
