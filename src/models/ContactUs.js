@@ -13,6 +13,10 @@ const contactUsSchema = new mongoose.Schema({
         type: Number,
         required: true
     },
+    companyName: {
+        type: String,
+        required: true
+    },
     service: {
         type: String,
         required: true

@@ -97,12 +97,14 @@ exports.blogPost = async (req, res) => {
 };
 
 exports.contactUs = async (req, res) => {
-  const { name, email, contact, service, message } = req.body;
-  if (!name || !email || !contact || !service || !message) {
+  const { name, email, contact, companyName, service, message } = req.body;
+  if (!name || !email || !contact || !companyName || !service || !message) {
+    
     let missingFields = [];
     if (!name) missingFields.push("name");
     if (!email) missingFields.push("email");
     if (!contact) missingFields.push("contact");
+    if (!companyName) missingFields.push("companyName");
     if (!service) missingFields.push("service");
     if (!message) missingFields.push("message");
 
@@ -114,6 +116,7 @@ exports.contactUs = async (req, res) => {
       name,
       email,
       contact,
+      companyName,
       service,
       message
     });
@@ -169,12 +172,12 @@ exports.allContactUs = async (req, res) => {
 };
 
 exports.sendEmail = (req, res) => {
-  const { name, email, contact, service, message } = req.body;
-  sendEmail(name, email, contact, service, message);
+  const { name, email, contact, companyName, service, message } = req.body;
+  sendEmail(name, email, contact, companyName, service, message);
   res.status(200).json({
     status: "true",
     message: 'Email sent successfully.',
-    formData: { name, email, contact, service, message }
+    formData: { name, email, contact, companyName, service, message }
   });
 };
 

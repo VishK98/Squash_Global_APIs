@@ -11,12 +11,12 @@ const transporter = nodemailer.createTransport({
 });
 
 // Function to send email
-const sendEmail = (name, email, contact, service, message) => {
+const sendEmail = (name, email, contact, companyName, service, message) => {
     const mailOptions = {
         from: `${name} <${email}>`,
         to: 'connect@theagencyway.co.in',
         subject: 'You have got a new enquiry',
-        text: `Name: ${name}\nEmail: ${email}\nContact: ${contact}\nService: ${service}\nMessage: ${message}`
+        text: `Name: ${name}\nEmail: ${email}\nContact: ${contact} \nCompany Name: ${companyName} \nService: ${service}\nMessage: ${message}`
     };
 
     transporter.sendMail(mailOptions, (error, info) => {
