@@ -98,7 +98,7 @@ exports.blogPost = async (req, res) => {
 
 exports.contactUs = async (req, res) => {
   const { name, email, contact, companyName, service, message } = req.body;
-  if (!name || !email || !contact || !companyName || !service || !message) {
+  if (!name || !email || !contact || !companyName || !service ) {
     
     let missingFields = [];
     if (!name) missingFields.push("name");
@@ -106,7 +106,7 @@ exports.contactUs = async (req, res) => {
     if (!contact) missingFields.push("contact");
     if (!companyName) missingFields.push("companyName");
     if (!service) missingFields.push("service");
-    if (!message) missingFields.push("message");
+    // if (!message) missingFields.push("message");
 
     return res.status(400).send({ error: `Please fill the following fields: ${missingFields.join(", ")}.` });
   }
