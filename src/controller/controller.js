@@ -4,6 +4,7 @@ const ContactUs = require('../models/ContactUs');
 const Login = require('../models/Login');
 const HireEmployee = require('../models/HireEmployee');
 const { sendEmail } = require('../models/mail');
+const { testRideEmail } = require('../models/maxtron/TestRide');
 const multer = require('multer');
 const fs = require('fs');
 
@@ -264,4 +265,17 @@ exports.sharedJobProfile = async (req, res) => {
     console.error(error);
     res.status(500).json({ error: 'Internal Server Error' });
   }
+};
+
+// maxtron all mail APIs
+
+exports.testRideEmail = (req, res) => {
+  console.log("I am here");
+  const { name, email, contact, city, selectModel, preferredDate } = req.body;
+  testRideEmail(name, email, contact, city, selectModel, preferredDate);
+  res.status(200).json({
+    status: "true",
+    message: 'Email sent successfully.',
+    formData: { name, email, contact, city, selectModel, preferredDate }
+  });
 };
