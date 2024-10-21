@@ -5,8 +5,8 @@ require('dotenv').config();
 const transporter = nodemailer.createTransport({
     service: 'gmail',
     auth: {
-        user: process.env.EMAIL_USER,
-        pass: process.env.EMAIL_PASS
+        user: process.env.MAX_EMAIL_USER,
+        pass: process.env.MAX_EMAIL_PASS
     }
 });
 
@@ -15,17 +15,17 @@ const testRideEmail = (name, email, contact, city, selectModel, preferredDate) =
     // Mail options for the admin
     const adminMailOptions = {
         from: `${name} <${email}>`,
-        to: 'connect@theagencyway.co.in',
+        to: 'ruleraditya1911@gmail.com',
         subject: 'You have got a new enquiry',
-        text: `Name: ${name}\nEmail: ${email}\nContact: ${contact} \nCity: ${city} \nModel: ${selectModel} \nPreferred Date: ${preferredDate}`
+        text: `Name: ${name}\nEmail: ${email}\nContact: ${contact} \nCity: ${city} \nModel: ${selectModel} \nPreferred Date: ${preferredDate}\n\nBest regards,\nThe Maxtron`
     };
 
     // Mail options for the user
     const userMailOptions = {
-        from: 'connect@theagencyway.co.in',
+        from: 'ruleraditya1911@gmail.com',
         to: `${name} <${email}>`,
         subject: 'Thank you for your enquiry',
-        text: `Dear ${name},\n\nThank you for your enquiry. We have received the following details:\n\nName: ${name}\nContact: ${contact}\nCity: ${city}\nModel: ${selectModel}\nPreferred Date: ${preferredDate}\n\nWe will get back to you shortly.\n\nBest regards,\nThe Agency`
+        text: `Dear ${name},\n\nThank you for your enquiry. We have received the following details:\n\nName: ${name}\nContact: ${contact}\nCity: ${city}\nModel: ${selectModel}\nPreferred Date: ${preferredDate}\n\nWe will get back to you shortly.\n\nBest regards,\nThe Maxtron`
     };
 
     // Send email to admin
