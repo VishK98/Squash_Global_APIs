@@ -17,7 +17,7 @@ const testRideEmail = (name, email, contact, city, selectModel, preferredDate) =
         from: `${name} <${email}>`,
         to: 'ruleraditya1911@gmail.com',
         subject: 'You have got a new enquiry',
-        text: `Name: ${name}\nEmail: ${email}\nContact: ${contact} \nCity: ${city} \nModel: ${selectModel} \nPreferred Date: ${preferredDate}\n\nBest regards,\nThe Maxtron`
+        text: `Name: ${name}\nEmail: ${email}\nContact: ${contact} \nCity: ${city} \nModel: ${selectModel} \nPreferred Date: ${preferredDate}\n\nBest regards,\n${name}`
     };
 
     // Mail options for the user
