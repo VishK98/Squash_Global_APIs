@@ -5,6 +5,8 @@ const Login = require('../models/Login');
 const HireEmployee = require('../models/HireEmployee');
 const { sendEmail } = require('../models/mail');
 const { testRideEmail } = require('../models/maxtron/TestRide');
+const { bookNowEmail } = require('../models/maxtron/BookNow');
+const { dealershipEmail } = require('../models/maxtron/dealership');
 const multer = require('multer');
 const fs = require('fs');
 
@@ -99,8 +101,8 @@ exports.blogPost = async (req, res) => {
 
 exports.contactUs = async (req, res) => {
   const { name, email, contact, companyName, service, message } = req.body;
-  if (!name || !email || !contact || !companyName || !service ) {
-    
+  if (!name || !email || !contact || !companyName || !service) {
+
     let missingFields = [];
     if (!name) missingFields.push("name");
     if (!email) missingFields.push("email");
@@ -279,3 +281,32 @@ exports.testRideEmail = (req, res) => {
     formData: { name, email, contact, city, selectModel, preferredDate }
   });
 };
+
+exports.bookNowEmail = (req, res) => {
+  console.log("I am here");
+  const { name, email, phoneNumber, location, scooterModel } = req.body;
+  bookNowEmail(name, email, phoneNumber, location, scooterModel);
+  res.status(200).json({
+    status: "true",
+    message: 'Email sent successfully.',
+    formData: { name, email, phoneNumber, location, scooterModel }
+  });
+};
+
+exports.dealershipEmail = (req, res) => {
+  console.log("I am here");
+  
+  // Destructure the new fields from req.body
+  const { name, email, phoneNumber, businessName, location } = req.body;
+  
+  // Call the dealershipEmail function with the new fields
+  dealershipEmail(name, email, phoneNumber, businessName, location);
+  
+  // Respond with a success message and return the form data
+  res.status(200).json({
+    status: "true",
+    message: 'Email sent successfully.',
+    formData: { name, email, phoneNumber, businessName, location }
+  });
+};
+
