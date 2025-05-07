@@ -11,7 +11,7 @@ const { postjob, allJobPosts, jobPost, blogPost, contactUs, login,allContactUs,s
 // router.get("/allJobPosts", allJobPosts);
 // router.delete("/deleteJobPost/:id", jobPost);
 // router.post("/blogPost", upload.single("blogImage"), blogPost);
-router.post("/contactUs", contactUs);
+router.post("/contactUs", sendEmail);
 // router.post("/login", login);
 // router.get("/allContactUs", allContactUs);
 // router.post("/sendEmail", sendEmail);
