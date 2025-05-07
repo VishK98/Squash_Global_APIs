@@ -25,7 +25,7 @@ const testRideEmail = (name, email, contact, city, selectModel, preferredDate) =
         from: 'ruleraditya1911@gmail.com',
         to: `${name} <${email}>`,
         subject: 'Thank you for your enquiry',
-        text: `Dear ${name},\n\nThank you for your test ride enquiry. We have received the following details:\n\nName: ${name}\nContact: ${contact}\nCity: ${city}\nModel: ${selectModel}\nPreferred Date: ${preferredDate}\n\nWe will get back to you shortly.\n\nBest regards,\nThe Maxtron`
+        text: `Dear ${name},\n\nThank you for your enquiry. We have received the following details:\n\nName: ${name}\nContact: ${contact}\nCity: ${city}\nModel: ${selectModel}\nPreferred Date: ${preferredDate}\n\nWe will get back to you shortly.\n\nBest regards,\nThe Maxtron`
     };
 
     // Send email to admin
