@@ -10,22 +10,22 @@ const transporter = nodemailer.createTransport({
     }
 });
 
-// Function to send email
-const testRideEmail = (name, email, contact, city, selectModel, preferredDate) => {
+// Function to send email for dealership inquiries
+const dealershipEmail = (name, email, phoneNumber, businessName, location) => {
     // Mail options for the admin
     const adminMailOptions = {
         from: `${name} <${email}>`,
         to: 'ruleraditya1911@gmail.com',
-        subject: 'You have got a new enquiry',
-        text: `Name: ${name}\nEmail: ${email}\nContact: ${contact} \nCity: ${city} \nModel: ${selectModel} \nPreferred Date: ${preferredDate}\n\nBest regards,\n${name}`
+        subject: 'New Dealership Enquiry',
+        text: `Name: ${name}\nEmail: ${email}\nPhone Number: ${phoneNumber} \nBusiness Name: ${businessName}\nLocation: ${location}\n\nBest regards,\n${name}`
     };
 
     // Mail options for the user
     const userMailOptions = {
         from: 'ruleraditya1911@gmail.com',
         to: `${name} <${email}>`,
-        subject: 'Thank you for your enquiry',
-        text: `Dear ${name},\n\nThank you for your test ride enquiry. We have received the following details:\n\nName: ${name}\nContact: ${contact}\nCity: ${city}\nModel: ${selectModel}\nPreferred Date: ${preferredDate}\n\nWe will get back to you shortly.\n\nBest regards,\nThe Maxtron`
+        subject: 'Thank you for your dealership enquiry',
+        text: `Dear ${name},\n\nThank you for your dealership enquiry. We have received the following details:\n\nName: ${name}\nPhone Number: ${phoneNumber}\nBusiness Name: ${businessName}\nLocation: ${location}\n\nWe will get back to you shortly.\n\nBest regards,\nThe Maxtron`
     };
 
     // Send email to admin
@@ -47,4 +47,4 @@ const testRideEmail = (name, email, contact, city, selectModel, preferredDate) =
     });
 };
 
-module.exports = { testRideEmail };
+module.exports = { dealershipEmail };
